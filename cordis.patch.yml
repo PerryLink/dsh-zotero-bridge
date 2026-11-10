@@ -1,0 +1,14 @@
+# dsh-zotero-bridge bundle patch: mount the read-only tools.
+#
+# There is no write path in this plugin. The Local API URL must be loopback;
+# the sqlite fallback reads a temporary copy, never the live database.
+- insert:
+    - id: dsh-zotero-bridge
+      name: dsh-zotero-bridge
+      config:
+        enabled: true
+        root: .zotero-bridge
+        localApiUrl: http://127.0.0.1:23119
+        # dataDir: /path/to/Zotero   # holds zotero.sqlite; auto-detected when omitted
+        timeoutMs: 10000
+        maxResults: 25
