@@ -89,11 +89,14 @@ If it reports `unavailable`, start Zotero and enable the Local API, or set
 
 ```sh
 pnpm install
+pnpm run check:lockfile
 pnpm typecheck
 pnpm test          # fixture DB + mock Local API; no Zotero required
 pnpm build
 pnpm verify:package
 ```
+
+The lockfile is committed exactly as `pnpm install --lockfile-only` writes it (two documents: pnpm's own package-manager document, then the project document), so a local install does not rewrite it. `pnpm run check:lockfile` fails when the lockfile drifts from `package.json` or loses that form.
 
 The sqlite test creates a minimal Zotero-shaped database in a temp directory;
 the Local API test uses a scripted fetch. Real-library acceptance is manual:

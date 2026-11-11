@@ -83,11 +83,14 @@ Run zotero_status.
 
 ```sh
 pnpm install
+pnpm run check:lockfile
 pnpm typecheck
 pnpm test          # fixture DB + mock Local API，不需要 Zotero
 pnpm build
 pnpm verify:package
 ```
+
+锁文件按 `pnpm install --lockfile-only` 的原样提交（两段：pnpm 自身的管理文档 + 项目文档），本地 `pnpm install` 不会改写它；`pnpm run check:lockfile` 在它与 `package.json` 不一致或丢失该形式时失败。
 
 sqlite 测试会在临时目录建一个最小 Zotero schema 数据库；Local API 测试用 scripted fetch。真实库验收是手动的：在有 Zotero 的机器上跑 `zotero_status`。
 
