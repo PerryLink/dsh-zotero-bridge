@@ -1,5 +1,7 @@
 # dsh-zotero-bridge
 
+> 宿主兼容性：DeepSeek Harness `dsh-v0.2.2-rc.4`（2026-11-18 核验）。
+
 **读取本地 Zotero 文献库，并把条目登记为证据 —— 但绝不写回。**
 
 *Local API 优先，`zotero.sqlite` 临时副本兜底，每篇选中的文献生成一条 REP 证据。不同步、不写入、不上云、不下载 PDF。*

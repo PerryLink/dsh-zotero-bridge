@@ -1,5 +1,7 @@
 # dsh-zotero-bridge
 
+> Host compatibility: DeepSeek Harness `dsh-v0.2.2-rc.4` (verified 2026-11-18).
+
 **Read a local Zotero library — and register the item as evidence. Never write to it.**
 
 *Local API first, a temporary copy of `zotero.sqlite` second, and one REP evidence item per selected paper. No sync, no write, no cloud, no PDF download.*
