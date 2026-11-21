@@ -1,22 +1,39 @@
-# dsh-zotero-bridge
+<div align="center">
 
-> 宿主兼容性：DeepSeek Harness `dsh-v0.2.2-rc.4`（2026-11-18 核验）。
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-zotero-bridge-hero-zh-light.webp" width="100%" alt="dsh-zotero-bridge 配图：fixture 条目 ABCD1234（2020 年，A study of things）经 Local API 只读读出 —— 标题、作者 Doe, Jane · Consortium 与高亮的 DOI 10.1000/xyz；下方是三种模式（local-api、sqlite 临时副本、unavailable 带步骤）与 zotero_to_rep 落地方式，底部写着只发 GET 与 SELECT">
+</picture>
+
+# dsh-zotero-bridge
 
 **读取本地 Zotero 文献库，并把条目登记为证据 —— 但绝不写回。**
 
 *Local API 优先，`zotero.sqlite` 临时副本兜底，每篇选中的文献生成一条 REP 证据。不同步、不写入、不上云、不下载 PDF。*
 
+宿主兼容性：DeepSeek Harness `dsh-v0.2.2-rc.4`（2026-11-18 核验）。
+
+[English](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24.9-brightgreen.svg)]()
 [![DSH plugin](https://img.shields.io/badge/dsh--plugin-✅-green)](https://github.com/topics/dsh-plugin)
 
-[English](README.md) · 简体中文
+</div>
 
 ---
 
 ## 为什么只读
 
 你的 Zotero 库是多年工作的唯一副本。一次错误的写入就可能损坏 `zotero.sqlite`，或让桌面端状态错乱。因此这个插件**没有任何写入路径**：只对 Local API 发 `GET`，只对数据库**副本**做 `SELECT`。
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-zotero-bridge-flow-v5-light.svg" width="100%" alt="dsh-zotero-bridge 结构图：先探测 127.0.0.1:23119 上的 Local API，再退回 zotero.sqlite 临时副本，两者都没有则返回 unavailable 与具体步骤；读取走 GET /api/users/0/items 或 SELECT FROM items，归一化为 ZoteroItem，最后登记一条 REP 证据或 items/<key>.json，不下载附件；图内标签就是真实的工具名、端点与字段名">
+</picture>
+
+*结构：探测 → 读取 → 登记；归一化的 `ZoteroItem` 与它的落地方式（`rep` / `file` / `none`）是两条输出，不存在第三条把库写坏的路径。图内只有工具名、端点与字段名，五语共用同一张结构图。*
 
 ## 三种模式
 
@@ -82,6 +99,11 @@ Run zotero_status.
 | 运行时依赖 | **零** |
 
 ## 开发
+
+![dsh-zotero-bridge 门禁：pnpm run check:lockfile、pnpm test、pnpm verify:package 的真实运行 —— 5 个测试文件 16 个测试跑在脚本化 Local API 与 sqlite 临时副本上，发布包的对外表面只读、零运行时依赖](docs/assets/dsh-zotero-bridge-demo.gif)
+
+*动图是 2026-11-21 真实运行的 `pnpm run check:lockfile`、`pnpm test`、`pnpm verify:package` 输出（5 个测试文件、16 个测试，脚本化 fetch + sqlite 临时副本 —— 不需要 Zotero，不联网）。插件没有 CLI，它文档里写的门禁就是那次运行：锁文件保持两段形式、四个工具与 sqlite 兜底都被覆盖、发布包的对外表面被验成只读。*
+
 
 ```sh
 pnpm install

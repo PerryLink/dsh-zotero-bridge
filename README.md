@@ -1,16 +1,25 @@
-# dsh-zotero-bridge
+<div align="center">
 
-> Host compatibility: DeepSeek Harness `dsh-v0.2.2-rc.4` (verified 2026-11-18).
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-hero-en-dark.webp">
+  <img src="docs/assets/dsh-zotero-bridge-hero-en-light.webp" width="100%" alt="dsh-zotero-bridge: the Zotero fixture item ABCD1234 (2020, “A study of things”) read read-only through the Local API — title, creators Doe, Jane · Consortium and the highlighted DOI 10.1000/xyz; below the three modes (local-api, temporary sqlite copy, unavailable with steps) and what zotero_to_rep persists, and a strip stating GET and SELECT only">
+</picture>
+
+# dsh-zotero-bridge
 
 **Read a local Zotero library — and register the item as evidence. Never write to it.**
 
 *Local API first, a temporary copy of `zotero.sqlite` second, and one REP evidence item per selected paper. No sync, no write, no cloud, no PDF download.*
 
+Host compatibility: DeepSeek Harness `dsh-v0.2.2-rc.4` (verified 2026-11-18).
+
+[简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24.9-brightgreen.svg)]()
 [![DSH plugin](https://img.shields.io/badge/dsh--plugin-✅-green)](https://github.com/topics/dsh-plugin)
 
-English · [简体中文](README-zh.md)
+</div>
 
 ---
 
@@ -20,6 +29,14 @@ Your Zotero library is the only copy of years of work. One bad write can
 corrupt `zotero.sqlite` or desynchronize the desktop client. This plugin
 therefore has **no write path at all**: it only performs `GET` against the
 Local API and `SELECT` against a temporary copy of the database.
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-zotero-bridge-flow-v5-light.svg" width="100%" alt="dsh-zotero-bridge structure: probe the Local API on 127.0.0.1:23119, then a temporary copy of zotero.sqlite, then unavailable with concrete steps; read with GET /api/users/0/items or SELECT FROM items, normalize into a ZoteroItem, and register one REP evidence item or items/<key>.json without downloading attachments; the labels inside the diagram are the real tool, endpoint and field names">
+</picture>
+
+*Structure: probe → read → register; a normalized `ZoteroItem` and its persistence (`rep` / `file` / `none`) are the two outputs, and there is no third path in which the library gets written. The token labels inside the diagram are the real tool, endpoint and field names, so the same picture serves all five languages.*
 
 ## Modes
 
@@ -88,6 +105,11 @@ If it reports `unavailable`, start Zotero and enable the Local API, or set
 | Runtime dependencies | **zero** |
 
 ## Development
+
+![dsh-zotero-bridge gates: a real run of pnpm run check:lockfile, pnpm test and pnpm verify:package — 5 test files and 16 tests against a scripted Local API and a temporary sqlite copy, read-only package surface, zero runtime dependencies](docs/assets/dsh-zotero-bridge-demo.gif)
+
+*Animated: the real `pnpm run check:lockfile`, `pnpm test` and `pnpm verify:package` output on 2026-11-21 (5 test files, 16 tests, scripted fetch + a temporary sqlite copy — no Zotero, no network). The plugin has no CLI, so its documented gates are the run: the lockfile keeps its two-document form, the four tools and the sqlite fallback are exercised, and the package surface is verified read-only.*
+
 
 ```sh
 pnpm install
