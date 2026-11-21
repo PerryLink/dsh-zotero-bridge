@@ -109,7 +109,7 @@ Si informa `unavailable`, inicia Zotero y activa la Local API, o configura `data
 pnpm install
 pnpm run check:lockfile
 pnpm typecheck
-pnpm test          # fixture DB + mock Local API; no se necesita Zotero
+pnpm test          # fixture DB + mock Local API; no Zotero required
 pnpm build
 pnpm verify:package
 ```

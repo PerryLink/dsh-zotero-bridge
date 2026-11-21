@@ -109,7 +109,7 @@ Run zotero_status.
 pnpm install
 pnpm run check:lockfile
 pnpm typecheck
-pnpm test          # fixture DB + mock Local API; Zotero की ज़रूरत नहीं
+pnpm test          # fixture DB + mock Local API; no Zotero required
 pnpm build
 pnpm verify:package
 ```
