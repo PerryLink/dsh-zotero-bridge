@@ -1,6 +1,6 @@
 {
   "name": "dsh-zotero-bridge",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Read-only Zotero bridge for DeepSeek Harness: search and read a local Zotero library through the Local API or a copied zotero.sqlite, and register an item as REP evidence. No writes, no sync, no cloud.",
   "author": "PerryLink contributors",
   "license": "Apache-2.0",
