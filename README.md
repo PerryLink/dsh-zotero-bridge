@@ -13,6 +13,8 @@
 
 Host compatibility: DeepSeek Harness `dsh-v0.2.2-rc.4` (verified 2026-11-18).
 
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -29,7 +31,6 @@ Your Zotero library is the only copy of years of work. One bad write can
 corrupt `zotero.sqlite` or desynchronize the desktop client. This plugin
 therefore has **no write path at all**: it only performs `GET` against the
 Local API and `SELECT` against a temporary copy of the database.
-
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-flow-v5-dark.svg">
@@ -109,7 +110,6 @@ If it reports `unavailable`, start Zotero and enable the Local API, or set
 ![dsh-zotero-bridge gates: a real run of pnpm run check:lockfile, pnpm test and pnpm verify:package — 5 test files and 16 tests against a scripted Local API and a temporary sqlite copy, read-only package surface, zero runtime dependencies](docs/assets/dsh-zotero-bridge-demo.gif)
 
 *Animated: the real `pnpm run check:lockfile`, `pnpm test` and `pnpm verify:package` output on 2026-11-21 (5 test files, 16 tests, scripted fetch + a temporary sqlite copy — no Zotero, no network). The plugin has no CLI, so its documented gates are the run: the lockfile keeps its two-document form, the four tools and the sqlite fallback are exercised, and the package surface is verified read-only.*
-
 
 ```sh
 pnpm install

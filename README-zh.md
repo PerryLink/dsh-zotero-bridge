@@ -13,6 +13,8 @@
 
 宿主兼容性：DeepSeek Harness `dsh-v0.2.2-rc.4`（2026-11-18 核验）。
 
+最近一次核验：DeepSeek Harness `dsh-v0.2.3-alpha.1`（2026-11-22）。
+
 [English](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -26,7 +28,6 @@
 ## 为什么只读
 
 你的 Zotero 库是多年工作的唯一副本。一次错误的写入就可能损坏 `zotero.sqlite`，或让桌面端状态错乱。因此这个插件**没有任何写入路径**：只对 Local API 发 `GET`，只对数据库**副本**做 `SELECT`。
-
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-flow-v5-dark.svg">
@@ -103,7 +104,6 @@ Run zotero_status.
 ![dsh-zotero-bridge 门禁：pnpm run check:lockfile、pnpm test、pnpm verify:package 的真实运行 —— 5 个测试文件 16 个测试跑在脚本化 Local API 与 sqlite 临时副本上，发布包的对外表面只读、零运行时依赖](docs/assets/dsh-zotero-bridge-demo.gif)
 
 *动图是 2026-11-21 真实运行的 `pnpm run check:lockfile`、`pnpm test`、`pnpm verify:package` 输出（5 个测试文件、16 个测试，脚本化 fetch + sqlite 临时副本 —— 不需要 Zotero，不联网）。插件没有 CLI，它文档里写的门禁就是那次运行：锁文件保持两段形式、四个工具与 sqlite 兜底都被覆盖、发布包的对外表面被验成只读。*
-
 
 ```sh
 pnpm install

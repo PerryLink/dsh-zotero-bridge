@@ -13,6 +13,8 @@
 
 होस्ट अनुकूलता: DeepSeek Harness `dsh-v0.2.2-rc.4` (2026-11-18 को सत्यापित)।
 
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -26,7 +28,6 @@
 ## यह केवल-पठन क्यों है
 
 आपकी Zotero लाइब्रेरी सालों के काम की एकमात्र प्रति है। एक ग़लत राइट `zotero.sqlite` को ख़राब कर सकता है या डेस्कटॉप क्लाइंट को बेमेल कर सकता है। इसलिए इस प्लगइन में **लिखने का कोई रास्ता नहीं है**: यह केवल Local API पर `GET` और डेटाबेस की एक अस्थायी प्रति पर `SELECT` करता है।
-
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-flow-v5-dark.svg">
@@ -103,7 +104,6 @@ Run zotero_status.
 ![dsh-zotero-bridge गेट: pnpm run check:lockfile, pnpm test और pnpm verify:package का असली रन — स्क्रिप्टेड Local API और sqlite की अस्थायी प्रति पर 5 टेस्ट फ़ाइलें और 16 टेस्ट, पैकेज सतह केवल-पठन और रनटाइम निर्भरताएँ शून्य](docs/assets/dsh-zotero-bridge-demo.gif)
 
 *एनिमेटेड: 2026-11-21 को `pnpm run check:lockfile`, `pnpm test` और `pnpm verify:package` का असली आउटपुट (5 टेस्ट फ़ाइलें, 16 टेस्ट, स्क्रिप्टेड fetch + sqlite की अस्थायी प्रति — Zotero की ज़रूरत नहीं, नेटवर्क नहीं)। प्लगइन में CLI नहीं है, इसलिए उसके दस्तावेज़ी गेट ही वह रन हैं: lockfile अपना दो-दस्तावेज़ रूप बनाए रखता है, चारों टूल और sqlite फ़ॉलबैक अभ्यास में आते हैं, और पैकेज सतह केवल-पठन सत्यापित होती है।*
-
 
 ```sh
 pnpm install

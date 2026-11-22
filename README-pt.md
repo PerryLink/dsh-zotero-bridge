@@ -13,6 +13,8 @@
 
 Compatibilidade de host: DeepSeek Harness `dsh-v0.2.2-rc.4` (verificado em 2026-11-18).
 
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -26,7 +28,6 @@ Compatibilidade de host: DeepSeek Harness `dsh-v0.2.2-rc.4` (verificado em 2026-
 ## Por que somente leitura
 
 Sua biblioteca do Zotero é a única cópia de anos de trabalho. Uma única escrita errada pode corromper o `zotero.sqlite` ou dessincronizar o cliente de desktop. Por isso este plugin **não tem nenhum caminho de escrita**: ele só faz `GET` na Local API e `SELECT` em uma cópia temporária do banco de dados.
-
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-zotero-bridge-flow-v5-dark.svg">
@@ -103,7 +104,6 @@ Se ele informar `unavailable`, inicie o Zotero e ative a Local API, ou defina `d
 ![dsh-zotero-bridge portas de qualidade: uma execução real de pnpm run check:lockfile, pnpm test e pnpm verify:package — 5 arquivos de teste e 16 testes contra uma Local API com respostas scriptadas e uma cópia temporária do sqlite, superfície do pacote em somente leitura e zero dependências em tempo de execução](docs/assets/dsh-zotero-bridge-demo.gif)
 
 *Animado: a saída real de `pnpm run check:lockfile`, `pnpm test` e `pnpm verify:package` em 2026-11-21 (5 arquivos de teste, 16 testes, fetch scriptado + uma cópia temporária do sqlite — sem Zotero, sem rede). O plugin não tem CLI, então suas portas documentadas são a execução: o lockfile mantém sua forma de dois documentos, as quatro ferramentas e o fallback sqlite são exercitados, e a superfície do pacote é verificada em somente leitura.*
-
 
 ```sh
 pnpm install
